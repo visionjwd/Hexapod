@@ -1,0 +1,34 @@
+#include <Arduino.h>
+#include "Header.h"
+#include <Adafruit_PWMServoDriver.h>
+#include <SPI.h>
+#include <Wire.h>
+
+Adafruit_PWMServoDriver servoDriver_0 = Adafruit_PWMServoDriver(0x40);
+Adafruit_PWMServoDriver servoDriver_1 = Adafruit_PWMServoDriver(0x41);
+
+#define MIN_P 120
+#define MAX_P 500
+#define SERVO_FREQ 50
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Test Test Test");
+  servoDriver_0.begin();
+  servoDriver_0.setPWMFreq(SERVO_FREQ);
+  servoDriver_1.begin();
+  servoDriver_1.setPWMFreq(SERVO_FREQ);
+  
+  for(int i = 0; i < 16; i ++)
+  {
+    servoDriver_0.setPWM(i, 1 , 310);
+    //servoDriver_1.setPWM(i, 1 , MAX_P);
+  }
+  delay(1000);
+  controllerInit();
+};
+
+void loop() {
+  // put your main code here, to run repeatedly:
+}
+
