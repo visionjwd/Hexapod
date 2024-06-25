@@ -5,8 +5,10 @@
 #define SERVO
 #define CONTROLLER
 
-//MATH//
 
+
+/*-------------------------MATH--------------------------*/
+//V3 Vector Library
 class V3
 {
     public:
@@ -25,6 +27,8 @@ class V3
     float zs() const;
     V3 lerp(const V3 &start, const V3 &end, const float &t);
 };
+
+//V2 Vector LIbrary
 class V2
 {
     public:
@@ -39,14 +43,19 @@ class V2
     V2 operator!=(const V2 &input) const;
 };
 
+/*-------------------------SERVO--------------------------*/
+//Global Called functions
 #ifdef SERVO
 
+//Servo parameters
 struct servoStruct
 {
     int ch = 0;
     int minAng = 50, maxAng = 130;
-    int targetAng = 90;
+    int targetAng = 0;
 };
+
+//Leg Parameters
 struct legStruct
 {
     servoStruct servos[3];
@@ -56,12 +65,16 @@ struct legStruct
     int mountangle;
     bool lift = false;
 };
-legStruct leg[6];
+
+extern legStruct leg[6];
 
 void lerpServoMove(legStruct &leg);
 
 #endif
 
+
+/*-------------------------INPUT--------------------------*/
+//functions utilized
 #ifdef CONTROLLER
 
 enum gaitmode
@@ -78,9 +91,7 @@ struct inputStruct
     float rotateLeft;
 };
 
-inputStruct input;
-V2 inputTarget;
-V2 rotateTarget;
+extern inputStruct input;
 
 void controllerInit();
 void getMoveInput();
@@ -98,6 +109,10 @@ enum status
 
 extern status HexaStatus;
 
-//ik//
-
+/*-------------------------IK--------------------------*/
 void anglecalc(legStruct &leg);
+
+/*-------------------------GAIT--------------------------*/
+
+void walkCycle();
+

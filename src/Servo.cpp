@@ -6,6 +6,7 @@
 
 #define MIN_P 120
 #define MAX_P 500
+#define SERVO_BASE 310
 #define SERVO_FREQ 50
 
 float pwmFactor = 2.23;
@@ -13,7 +14,7 @@ float pwmFactor = 2.23;
 Adafruit_PWMServoDriver servoDriver_0 = Adafruit_PWMServoDriver(0x40);
 Adafruit_PWMServoDriver servoDriver_1 = Adafruit_PWMServoDriver(0x41);
 
-legStruct leg[6];
+legStruct Leg[6];
 
 
 V3 offset = V3(118, 0 , 155);
@@ -76,10 +77,10 @@ void moveServo(servoStruct &servo)
     int angle = constrain(servo.targetAng, servo.minAng, servo.maxAng);
 
     if(servo.ch < 16){
-        servoDriver_0.setPWM(servo.ch, 0, int(servo.targetAng * pwmFactor) + MIN_P);
+        servoDriver_0.setPWM(servo.ch, 0, int(servo.targetAng * pwmFactor) + SERVO_BASE);
     }
     else{
-        servoDriver_1.setPWM(servo.ch - 16, 0, int(servo.targetAng * pwmFactor) + MIN_P);
+        servoDriver_1.setPWM(servo.ch - 16, 0, int(servo.targetAng * pwmFactor) + SERVO_BASE);
     }
 }
 //move leg in 2 step lerp function smoothfunction. 
@@ -90,12 +91,14 @@ void lerpServoMove(legStruct &leg)
     moveServo(leg.servos[0]);
     moveServo(leg.servos[1]);
     moveServo(leg.servos[2]);
+
 }
-void moveLeg()
-{
-    
-}
+
 void allTo90()
 {
-    
+    for(int i = 0; i < 6; i ++){
+        leg[i].servos[0].targetAng = 0;
+        leg[i].servos[1].targetAng = 0;
+        leg[i].servos[2].targetAng = 0;
+    }
 }

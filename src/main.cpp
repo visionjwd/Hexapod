@@ -4,15 +4,15 @@
 #include <SPI.h>
 #include <Wire.h>
 
-Adafruit_PWMServoDriver servoDriver_0 = Adafruit_PWMServoDriver(0x40);
-Adafruit_PWMServoDriver servoDriver_1 = Adafruit_PWMServoDriver(0x41);
+//Adafruit_PWMServoDriver servoDriver_0 = Adafruit_PWMServoDriver(0x40);
+//Adafruit_PWMServoDriver servoDriver_1 = Adafruit_PWMServoDriver(0x41);
 
 #define MIN_P 120
 #define MAX_P 500
 #define SERVO_FREQ 50
 
-void setup() {
-  Serial.begin(115200);
+void test(){
+  /*Serial.begin(115200);
   Serial.println("Test Test Test");
   servoDriver_0.begin();
   servoDriver_0.setPWMFreq(SERVO_FREQ);
@@ -23,7 +23,19 @@ void setup() {
   {
     servoDriver_0.setPWM(i, 1 , 310);
     //servoDriver_1.setPWM(i, 1 , MAX_P);
-  }
+  }*/
+}
+void init(){
+  controllerInit();
+  //HexaStatus = STAND;
+
+}
+void setup() {
+
+  /*-------------------------Startup--------------------------*/
+  init();
+
+  
   delay(1000);
   controllerInit();
 };
