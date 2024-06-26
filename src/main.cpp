@@ -4,8 +4,6 @@
 #include <SPI.h>
 #include <Wire.h>
 
-//Adafruit_PWMServoDriver servoDriver_0 = Adafruit_PWMServoDriver(0x40);
-//Adafruit_PWMServoDriver servoDriver_1 = Adafruit_PWMServoDriver(0x41);
 
 #define MIN_P 120
 #define MAX_P 500
@@ -28,6 +26,11 @@ void test(){
 void init(){
   controllerInit();
   //HexaStatus = STAND;
+  allTo90();
+  walkPos();
+  
+
+
 
 }
 void setup() {
@@ -42,5 +45,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  walkCycle();
+  
 }
 

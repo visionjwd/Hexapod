@@ -100,6 +100,7 @@ void clearInput();
 
 #endif
 
+/*-------------------------STATUS--------------------------*/
 enum status
 {
     STAND,
@@ -115,4 +116,7 @@ void anglecalc(legStruct &leg);
 /*-------------------------GAIT--------------------------*/
 
 void walkCycle();
+void allTo90();
+void walkPos();
+const int walkHeight = -100;
 

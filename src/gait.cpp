@@ -15,10 +15,10 @@ void legForward(legStruct &leg, V2 &moveInput)
     //when 3 legs are moving back, lift and move the other 3 forward.
     V2 inter = (moveInput.x / 2, moveInput.y / 2); 
     if(leg.lift){
-        leg.target = (inter.x, inter.y, legLift);
+        leg.target = (inter.x, inter.y, legLift+ walkHeight);
     }
     else{
-        leg.target = (inter.x, inter.y, 0);
+        leg.target = (inter.x, inter.y, walkHeight);
     }
 
     //first third

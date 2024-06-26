@@ -14,7 +14,7 @@ float pwmFactor = 2.23;
 Adafruit_PWMServoDriver servoDriver_0 = Adafruit_PWMServoDriver(0x40);
 Adafruit_PWMServoDriver servoDriver_1 = Adafruit_PWMServoDriver(0x41);
 
-legStruct Leg[6];
+legStruct leg[6];
 
 
 V3 offset = V3(118, 0 , 155);
@@ -100,5 +100,11 @@ void allTo90()
         leg[i].servos[0].targetAng = 0;
         leg[i].servos[1].targetAng = 0;
         leg[i].servos[2].targetAng = 0;
+    }
+}
+
+void walkPos(){
+    for(int i = 0; i < 6; i ++){
+        leg[i].target = (0,0,walkHeight);
     }
 }
